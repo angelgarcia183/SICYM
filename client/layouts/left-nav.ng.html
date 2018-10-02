@@ -1,0 +1,69 @@
+<nav>
+	<ul data-smart-menu>
+		<li data-ui-sref-active="active">
+			<a  ui-sref="root.home" title="Perfil">
+				<i class="fa fa-lg fa-fw fa-user"></i>
+				<span class="menu-item-parent">Perfil</span>
+			</a>
+		</li>
+		<!-- sADMIN	-->
+		<li data-ui-sref-active="active">
+			<a ng-show="currentUser.roles[0] == 'sAdmin'" ui-sref="root.unidades" title="Unidades">
+				<i class="fa fa-lg fa-fw fa-building"></i>
+				<span class="menu-item-child">Unidades</span>
+			</a>
+		</li>
+		<li data-ui-sref-active="active">
+			<a ng-show="currentUser.roles[0] == 'sAdmin'" ui-sref="root.listaAdministradores" title="Administradores">
+				<i class="fa fa-lg fa-fw fa-building"></i>
+				<span class="menu-item-child">Administradores</span>
+			</a>
+		</li>
+		<!--Admin por Unidad-->
+		<li data-ui-sref-active="active">
+			<a ng-show="currentUser.roles[0] == 'Administrador'" ui-sref="root.departamentos" title="Departamentos">
+				<i class="fa fa-lg fa-fw fa-building"></i>
+				<span class="menu-item-child">Departamentos</span>
+			</a>
+		</li>
+		<li data-ui-sref-active="active">
+			<a ng-show="currentUser.roles[0] == 'Administrador'" ui-sref="root.programasEducativos" title="Programas Educativos">
+				<i class="fa fa-lg fa-fw fa-book"></i>
+				<span class="menu-item-parent">Programas Educativos</span>
+			</a>
+		</li>		
+		<li data-ui-sref-active="active">
+			<a ng-show="currentUser.roles[0] == 'Administrador'" ui-sref="root.listacoordinadores" title="Coordinadores">
+				<i class="fa fa-lg fa-fw fa-users"></i>
+				<span class="menu-item-parent">Coordinadores</span>
+			</a>
+		</li>
+	<!-- COORDINADOR -->
+		<li data-ui-sref-active="active">
+			<a ng-show="currentUser.roles[0] == 'Coordinador'" ui-sref="root.materias" title="Materias">
+				<i class="fa fa-lg fa-fw fa-map-o"></i>
+				<span class="menu-item-child">Materias</span>
+			</a>
+		</li>
+		<li data-ui-sref-active="active">
+			<a ng-show="currentUser.roles[0] == 'Coordinador'" ui-sref="root.planEstudio" title="Planes de Estudio">
+				<i class="fa fa-lg fa-fw fa-book"></i>
+				<span class="menu-item-parent">Planes de Estudio</span>
+			</a>
+		</li>
+		<li  data-ui-sref-active="active">
+			<a ng-show="currentUser.roles[0] == 'Coordinador'"  ui-sref="root.listamaestros" title="Maestros">
+				<i class="fa fa-lg fa-fw fa-users"></i>
+				<span class="menu-item-parent">Maestros</span>
+			</a>
+		</li>
+	<!-- MAESTROS -->		
+		<li  data-ui-sref-active="active">
+			<a ng-show="currentUser.roles[0] == 'Maestro'"  ui-sref="root.maestros" title="Planeaciones">
+				<i class="fa fa-lg fa-fw fa-users"></i>
+				<span class="menu-item-parent">Planeaciones</span>
+			</a>
+		</li>
+	<!---->	
+</ul>
+</nav>

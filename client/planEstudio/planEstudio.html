@@ -1,0 +1,126 @@
+
+<title>Planes de Estudio - pudoP</title>
+
+<h2>Planes de Estudio</h2>
+<div class="row">
+	<div class="col-sm-12">
+		<button type="button" href="#Agregar" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" ng-click="plae.Nuevo()" class="btn btn-{{plae.nuevo == true ? 'success' : 'danger'}}">{{plae.nuevo == true ? 'Nuevo' : 'Cancelar'}}</button>      
+		<div class="collapse" id="Agregar">
+			</br>
+			<form name="form" class="form-horizontal" role="form">
+		  	<div class="well">	    
+			    <div class="row">
+			    	<div class="col-sm-12">					    
+							<div class="col-sm-4" valida>
+									<label>Nombre del Plan de Estudio</label>
+									<input name="nombrePlandeEstudio" type="text" class="form-control" placeholder="Nombre del Plan de Estudio" ng-model="plae.plandeEstudio.nombrePlandeEstudio" required>
+								</div>
+							<div class="col-sm-2" valida>
+									<label>Duracion</label>
+									<select name="txtDuracion" class="form-control" ng-model="plae.plandeEstudio.duracionPlandeEstudio">
+										<option>Seleccionar duracion</option>
+										<option value='1'>1</option>
+										<option value='2'>2</option>
+									</select>
+								</div>
+								<div class="col-sm-2" valida>
+									<label>Tipo</label>
+									<select name="txtTipo" class="form-control"   ng-model="plae.plandeEstudio.tipoPlandeEstudio">
+										<option>Seleccionar tipo</option>
+										<option value='Bimestral'>Bimestral</option>
+										<option value='Trimestral'>Trimestral</option>
+										<option value='Semestral'>Semestral</option>
+									</select>
+								</div>
+								<div class="col-sm-6">
+										<label>Materias </label>
+										<select class="mutiSelect" style="width: 50%" name="materias" ng-model="plae.plandeEstudio.Materias" multiple="multiple">
+											<option ng-repeat="materia in plae.materias" value="{{materia._id}}"> {{materia.nombre}}</option>
+										</select>
+									</div>
+						</div>					   					    
+					</div>
+				</div>
+				
+				<br>
+			    <div class="row">
+					<div class="col-sm-12">
+						<input type="submit" ng-click="plae.guardar(plae.plandeEstudio,form)" value="Guardar" class="btn btn-info" ng-show="plae.action" valida-form formulario="form">
+						<input type="submit" ng-click="plae.actualizar(plae.plandeEstudio,form)" value="Actualizar" class="btn btn-info" ng-show="!plae.action" valida-form formulario="form">	
+					</div>
+				</div>
+		  	</div>  
+		  </form>
+		</div>
+	</div>
+</div>
+<br/>
+<div class="well">
+		<div class="row">
+				<div class="col-sm-12">	
+					<div class="col-sm-3">
+						<label>Filtrar por...</label>
+						<select name="OBJETO" class="form-control"  disabled>
+							<option value disabled selected>Seleccionar</option>
+						</select>
+					</div>
+					<div class="col-sm-9">
+							<label>&nbsp;</label>
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Buscar..."  disabled>
+								<span class="input-group-btn">
+									<button class="btn btn-info"  type="button" disabled>Buscar</button>
+								</span>
+							</div>
+					</div>			
+				</div>
+			</div>
+			<br>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th width="24%"><div class="text-center">Nombre</div></th>
+						<th width="12%"><div class="text-center">Duracion</div></th>
+						<th width="12%"><div class="text-center">Tipo</div></th>
+						<th width="40%" hidden class="materiasMostrar"><div class="text-center">Materias</div></th>
+						<th width="12%"><div class="text-center">Acciones</div></th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="plandeEstudio in plae.planesdeEstudio">
+					<td>{{plandeEstudio.nombrePlandeEstudio}}</td>
+					<td>{{plandeEstudio.duracionPlandeEstudio}}</td>
+					<td>{{plandeEstudio.tipoPlandeEstudio}}</td>
+					<td class="materiasMostrar" hidden><p>{{plae.ObtenerMaterias(plandeEstudio.Materias)}}</p></td>
+					<td class="text-center">
+							<button type="button" class="btn btn-info" onclick="toggleraro()" title="Mostrar Materias" id="btnMostrarMaterias"><i class="fa fa-eye"></i></button>
+							<button type="button" class="btn btn-info" title="Editar" ng-click="plae.editar(plandeEstudio._id)"><i class="fa fa-pencil"></i></a></li></button>
+					</td>
+				</tr>
+				</tbody>
+				
+			</table>
+		</div>
+	</div>
+</div>
+
+
+
+<script>
+	function toggleraro() {
+		$('.materiasMostrar').toggle();
+	}
+
+	$(document).ready(function() {
+		$('.mutiSelect').select2({
+
+		});
+		
+
+	})
+
+	
+
+</script>

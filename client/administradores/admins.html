@@ -1,0 +1,74 @@
+<title>Nuevo Administrador - pudoP</title>
+
+<h2>{{am.VerSiEsPerfil()}}</h2>
+<form name="form" class="form-horizontal" role="form" novalidate>
+    <div class="well">
+        <fieldset>
+            <legend>Datos de la cuenta</legend>
+            <div class="row">
+                <div class="col-sm-12">	
+                    <div class="col-sm-4" valida>
+                        <label>Usuario</label>
+                        <input ng-disabled="!am.accion" placeholder="Usuario" name="usuario" type="text" class="form-control" ng-model="am.usuario.username" required />
+                    </div>
+                    <div class="col-sm-4" valida>
+                        <label>Contraseña</label>
+                        <input  type="password" placeholder="Contraseña" name="contrasena" type="text" class="form-control" ng-model="am.usuario.password" required />
+                    </div>
+                    <div class="col-sm-4" valida>
+                        <label>Repetir Contraseña</label>
+                        <input type="password" placeholder="Repetir Contraseña" name="repetirContrasena" type="text" class="form-control" ng-model="am.usuario.repetirContra" required />
+                    </div>
+                </div>
+        </fieldset>
+        </br>
+        <fieldset>
+            <legend>Datos del usuario</legend>
+            <div class="row">
+                <div class="col-sm-12">	
+                    <div class="col-sm-4">
+                        <label>Nombre (s)</label>
+                        <input type="text" class="form-control" placeholder="Nombre (s)" ng-model="am.usuario.profile.nombres" />
+                    </div>
+                    <div class="col-sm-4" valida>
+                        <label>Apellido Paterno</label>
+                        <input name="apellidoPatern" type="text" placeholder="Apellido Paterno" class="form-control" ng-model="am.usuario.profile.apellidoPaterno" required />
+                    </div>
+                    <div class="col-sm-4" valida>
+                        <label>Apellido Materno</label>
+                        <input name="apellidoMaterno" type="text" placeholder="Apellido Materno" class="form-control" ng-model="am.usuario.profile.apellidoMaterno" required />
+                    </div>
+                </div>
+                <h6>&nbsp;</h6>
+                <div class="col-sm-12">	
+                    <div class="col-sm-4">
+                        <label>Unidad</label>
+                        <select name="unidad" class="form-control" ng-model="am.usuario.profile.unidad">
+                            <option value disabled selected>Seleccionar Unidad...</option>
+                            <option ng-repeat="uni in am.unidades" value="{{uni._id}}">{{uni.nombreUnidad}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4" valida>
+                        <label>Sexo</label>
+                        <select name="sexo" class="form-control" ng-model="am.usuario.profile.sexo" required>
+                            <option value disabled selected>Seleccionar sexo...</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <input type="submit" ng-click="am.guardar(am.usuario, form)" class="btn btn-info" ng-if="am.accion" valida-form formulario="form" value="Guardar">
+                
+               <input type="submit" ng-click="am.actualizar(am.objeto, form)" class="btn btn-info" valida-form formulario="form" value="Actualizar"
+                ng-if="!am.accion">
+
+                <button type="button" ui-sref="root.listaAdministradores" class="btn btn-danger">Cancelar</button>
+            </div>
+        </div>
+        </div>
+</form>

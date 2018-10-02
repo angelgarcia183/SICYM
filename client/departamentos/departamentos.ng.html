@@ -1,0 +1,106 @@
+<title>Departamentos - pudoP</title>
+
+<h2>Departamentos</h2>
+<div class="row">
+	<div class="col-sm-12">
+		<button type="button" href="#Agregar" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" ng-click="depa.Nuevo()" class="btn btn-{{depa.nuevo == true ? 'success' : 'danger'}}">{{depa.nuevo == true ? 'Nuevo' : 'Cancelar'}}</button>        
+		<button type="button" ui-sref="root.unidades" class="btn btn-primary">Unidades</button>
+		<div class="collapse" id="Agregar">
+			</br>
+			<form name="form" class="form-horizontal" role="form">
+		  	<div class="well">
+					<legend>Datos del departamento</legend>     
+			    <div class="row">
+			    	<div class="col-sm-12">					    
+						<div class="col-sm-3" valida>
+							<label>Clave del Departamentos</label>
+							<input name="clvDepartamento" type="text" class="form-control" placeholder="Clave del Departamento" ng-model="depa.departamento.clvDepartamento" required> 
+						</div>    					
+						<div class="col-sm-5" valida>
+							<label>Nombre del Departamento</label>
+							<input name="nombreDepartamento" type="text" class="form-control" placeholder="Nombre del Departamento" ng-model="depa.departamento.nombreDepartamento" required>
+						</div>
+						<div class="col-sm-4" valida>
+							<label>Unidad</label>
+							<select name="unidad" class="form-control select2" ng-model="depa.departamento.unidad_id" required>
+								<option value disabled selected>Seleccionar Unidad...</option>
+								<option ng-repeat="unidad in depa.unidades" value="{{unidad._id}}"> {{unidad.nombreUnidad}}</option>
+							</select>
+						</div>					    
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-sm-12">
+						<input type="submit" ng-click="depa.guardar(depa.departamento,form)" value="Guardar" class="btn btn-info" ng-show="depa.action" valida-form formulario="form">
+						<input type="submit" ng-click="depa.actualizar(depa.departamento,form)" value="Actualizar" class="btn btn-info" ng-show="!depa.action" valida-form formulario="form">	
+					</div>
+				</div>
+		  	</div>  
+		  </form>
+		</div>
+	</div>
+</div>
+<br/>
+
+
+
+<!-- List -->
+<div class="well">
+	<div class="row">
+			<div class="col-sm-12">	
+				<div class="col-sm-3">
+					<label>Filtrar por...</label>
+					<select name="OBJETO" class="form-control"  disabled>
+						<option value disabled selected>Seleccionar</option>
+					</select>
+				</div>
+				<div class="col-sm-9">
+					<label>&nbsp;</label>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Buscar..."  disabled>
+						<span class="input-group-btn">
+							<button class="btn btn-info"  type="button" disabled>Buscar</button>
+						</span>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<br>
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th width="4%"><div class="text-center">Clave</div></th>
+						<th width="37%"><div class="text-center">Nombre</div></th>
+						<th width="37%"><div class="text-center">Unidad</div></th>
+						<th width="7%"><div class="text-center">Estatus</div></th>
+						<th width="12%"><div class="text-center">Acciones</div></th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="departamento in depa.departamentos">
+					<td class="text-center">{{departamento.clvDepartamento}}</td>
+					<td>{{departamento.nombreDepartamento}}</td>
+					<td>{{departamento.unidad}}</td>
+					<td>
+						<div class="text-center">
+							<span ng-if="departamento.estatus" class="label label-success">
+								Activo
+							</span>
+							<span ng-if="!departamento.estatus" class="label label-danger">
+								Inactivo
+							</span>
+						</div>
+					</td>			
+					<td class="text-center">
+							<button type="button" class="btn btn-info" title="Editar" ng-click="depa.editar(departamento._id)"><i class="fa fa-pencil"></i></a></li></button>
+							<button type="button" class="btn btn-{{departamento.estatus ? 'danger' : 'success' }}" title="{{departamento.estatus ? 'Desactivar' : 'Activar' }}" ng-click="depa.cambiarEstatus(departamento._id)"><i class="fa fa-{{departamento.estatus ? 'times' : 'check' }}"></i></a></button>	    
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

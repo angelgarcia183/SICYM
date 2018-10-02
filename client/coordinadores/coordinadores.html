@@ -1,0 +1,76 @@
+<title>Nuevo Coordinador - pudoP</title>
+
+<h2>{{cc.VerSiEsPerfil()}}</h2>
+
+<form name="form" class="form-horizontal" role="form" novalidate>
+    <div class="well">
+        <fieldset>
+            <legend>Datos de la cuenta</legend>
+            <div class="row">
+                <div class="col-sm-12">	
+                    <div class="col-sm-4" valida>
+                        <label>Usuario</label>
+                        <input ng-disabled="!cc.accion" placeholder="Usuario" name="usuario" type="text" class="form-control" ng-model="cc.usuario.username" required />
+                    </div>
+                    <div class="col-sm-4" valida>
+                        <label>Contraseña</label>
+                        <input  type="password" name="contrasena" placeholder="Contraseña" type="text" class="form-control" ng-model="cc.usuario.password" required />
+                    </div>
+                    <div class="col-sm-4" valida>
+                        <label>Repetir Contraseña</label>
+                        <input type="password" name="repetirContrasena" placeholder="Repetir Contraseña" type="text" class="form-control" ng-model="cc.usuario.repetirContra" required />
+                    </div>
+                </div>
+        </fieldset>
+        </br>
+        <fieldset>
+            <legend>Datos del usuario</legend>
+            <div class="row">
+                <div class="col-sm-12">	    
+                <div class="col-sm-4">
+                    <label>Nombre (s)</label>
+                    <input type="text" class="form-control" placeholder="Nombre (s)" ng-model="cc.usuario.profile.nombres" />
+                </div>
+                <div class="col-sm-4" valida>
+                    <label>Apellido Paterno:</label>
+                    <input name="apellidoPatern" type="text" placeholder="Apellido Paterno" class="form-control" ng-model="cc.usuario.profile.apellidoPaterno" required />
+                </div>
+                <div class="col-sm-4" valida>
+                    <label>Apellido Materno:</label>
+                    <input name="apellidoMaterno" type="text" placeholder="Apellido Materno" class="form-control" ng-model="cc.usuario.profile.apellidoMaterno" required />
+                </div>
+            </div>
+            <h6>&nbsp;</h6>
+            <div class="col-sm-12">	
+                <div class="col-sm-4">
+                   <label>Departamento</label>
+                   <select name="departamento" class="form-control"  ng-model="cc.usuario.profile.departamento">
+                    <option value disabled selected>Seleccionar Departamento...</option>
+                    <option ng-repeat="depa in cc.departamentos" value="{{depa._id}}">{{depa.nombreDepartamento}}</option>
+                   </select>
+                   
+                </div>
+               
+                <div class="col-sm-4" valida>
+                    <label>Sexo</label>
+                    <select name="sexo" class="form-control" ng-model="cc.usuario.profile.sexo" required>
+                        <option value disabled selected>Seleccionar sexo...</option>    
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <input type="submit" ng-click="cc.guardar(cc.usuario, form)" class="btn btn-info" ng-if="cc.accion" valida-form formulario="form" value="Guardar">
+                
+               <input type="submit" ng-click="cc.actualizar(cc.objeto, form)" class="btn btn-info" valida-form formulario="form" value="Actualizar"
+                ng-if="!cc.accion">
+
+                <button type="button" ui-sref="root.listacoordinadores" class="btn btn-danger">Cancelar</button>
+            </div>
+        </div>
+        </div>
+        </fomr>

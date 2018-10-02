@@ -1,0 +1,140 @@
+<title>Programas Educativos - pudoP</title>
+
+<h2>Programas Educativos</h2>
+<div class="row">
+	<div class="col-sm-12">
+		<button type="button" href="#Agregar" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" ng-click="proe.Nuevo()" class="btn btn-{{proe.nuevo == true ? 'success' : 'danger'}}">{{proe.nuevo == true ? 'Nuevo' : 'Cancelar'}}</button>      
+		<div class="collapse" id="Agregar">
+			</br>
+			<form name="form" class="form-horizontal" role="form">
+		  	<div class="well">
+				<legend>Datos del Programa Educativo</legend> 	    
+			    <div class="row">
+			    	<div class="col-sm-12">					    
+                		<div class="col-sm-3" valida>
+                    		<label>Clave </label>
+                    		<input name="clvProgramaEducativo" type="text" class="form-control" placeholder="Clave del Programa Educativo" ng-model="proe.programaEducativo.clvProgramaEducativo" required> 
+						</div>
+						<div class="col-sm-9" valida>
+							<label>Nombre del Programa Educativo</label>
+							<input name="nombreProgramaEducativo" type="text" class="form-control" placeholder="Nombre del Programa Educativo" ng-model="proe.programaEducativo.nombreProgramaEducativo" required>
+						</div>
+					</div>
+					<h6>&nbsp;</h6>
+					<div class="col-sm-12">	
+						<div class="col-sm-3" valida>
+							<label>Unidades</label>
+							<select name="unidad" class="form-control mutiSelect" style="width: 100%" multiple="multiple" ng-model="proe.programaEducativo.unidades" required>
+								<option ng-repeat="unidad in proe.unidades" value="{{unidad._id}}"> {{unidad.nombreUnidad}}</option>
+							</select>
+                        </div>
+                        <div class="col-sm-3" valida>
+							<label>Departamento</label>
+							<select name="departamento" class="form-control select2" ng-model="proe.programaEducativo.departamentoProgramaEducativo" required>
+								<option value disabled selected>Seleccionar departamento...</option>
+								<option ng-repeat="departamento in proe.departamentos" value="{{departamento.nombreDepartamento}}"> {{departamento.nombreDepartamento}}</option>
+							</select>
+						</div>
+					</div>
+					<h6>&nbsp;</h6>
+					<div class="col-sm-12">
+						<div class="col-sm-12">
+							<label for="textarea">Detalles</label>
+							<textarea cols="20" rows="10" name="detallesProgramaEducativo" class="form-control" placeholder="Detalles del Programa Educativo" ng-model="proe.programaEducativo.detallesProgramaEducativo"></textarea>                      				    
+						</div>					   					    
+					</div>
+				</div>
+				<br>
+			    <div class="row">
+					<div class="col-sm-12">
+						<input type="submit" ng-click="proe.guardar(proe.programaEducativo,form)" value="Guardar" class="btn btn-info" ng-show="proe.action" valida-form formulario="form">
+						<input type="submit" ng-click="proe.actualizar(proe.programaEducativo,form)" value="Actualizar" class="btn btn-info" ng-show="!proe.action" valida-form formulario="form">	
+					</div>
+				</div>
+		  	</div>  
+		  </form>
+		</div>
+	</div>
+</div>
+<br/>
+
+
+
+<!-- List -->
+<div class="well">
+	<div class="row">
+		<div class="col-sm-12">	
+			<div class="col-sm-3">
+				<label>Filtrar por...</label>
+				<select name="OBJETO" class="form-control"  disabled>
+					<option value disabled selected>Seleccionar</option>
+				</select>
+			</div>
+			<div class="col-sm-9">
+				<label>&nbsp;</label>
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Buscar..."  disabled>
+					<span class="input-group-btn">
+						<button class="btn btn-info"  type="button" disabled>Buscar</button>
+					</span>
+				</div>
+			</div>				
+		</div>
+	</div>
+	<br>
+<div class="row">
+	<div class="col-sm-12">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+                    <th width="4%"><div class="text-center">Clave</div></th>
+					<th width="20%"><div class="text-center">Nombre</div></th>
+					<th width="19%" class="unidadesMostrar" hidden><div class="text-center">Unidades</div></th>
+                    <th width="19%"><div class="text-center">Departamento</div></th>
+                    <th width="20%"><div class="text-center">Detalles</div></th>
+                    <th width="7%"><div class="text-center">Estatus</div></th>
+                    <th width="12%"><div class="text-center">Acciones</div></th>
+				</tr>
+			</thead>
+			<tbody>
+		    <tr ng-repeat="programaEducativo in proe.programasEducativos">
+                <td class="text-center">{{programaEducativo.clvProgramaEducativo}}</td>
+				<td>{{programaEducativo.nombreProgramaEducativo}}</td>
+				<td class="unidadesMostrar" hidden><p>{{proe.obtenerUnidades(programaEducativo.unidades)}}</p></td>
+                <td>{{programaEducativo.departamentoProgramaEducativo}}</td>
+                <td>{{programaEducativo.detallesProgramaEducativo}}</td>
+			    <td>
+				    <div class="text-center">
+						
+				    	<span ng-if="programaEducativo.estatus" class="label label-success">
+							Activo
+						</span>
+						<span ng-if="!programaEducativo.estatus" class="label label-danger">
+							Inactivo
+						</span>
+				    </div>
+			    </td>
+			    <td class="text-center">
+						<button type="button" class="btn btn-success" onclick="toggleUnidades()" title="Mostrar Unidades" id="btnMostrarUnidades"><i class="fa fa-eye"></i></button>
+						<button type="button" class="btn btn-info" title="Editar" ng-click="proe.editar(programaEducativo._id)"><i class="fa fa-pencil"></i></a></li></button>
+						<button type="button" class="btn btn-{{programaEducativo.estatus ? 'danger' : 'success' }}" title="{{programaEducativo.estatus ? 'Desactivar' : 'Activar' }}" ng-click="proe.cambiarEstatus(programaEducativo._id)"><i class="fa fa-{{programaEducativo.estatus ? 'times' : 'check' }}"></i></a></button>	    
+			    </td>
+		    </tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<script>
+	
+	function toggleUnidades() {
+		$('.unidadesMostrar').toggle();
+	}
+	$(document).ready(function() {
+		$('.mutiSelect').select2({
+
+		});
+	})
+
+</script>

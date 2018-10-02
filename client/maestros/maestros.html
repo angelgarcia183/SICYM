@@ -1,0 +1,68 @@
+<h2>{{mc    .VerSiEsPerfil()}}</h2>
+<form name="form" class="form-horizontal" role="form" novalidate>
+    <div class="well">
+        <fieldset>
+            <legend>Datos de la cuenta</legend>
+            <div class="row">
+                <div class="col-sm-4" valida>
+                    <label>Usuario:</label>
+                    <input ng-disabled="!mc.accion" name="usuario" type="text" class="form-control" ng-model="mc.usuario.username" ng-required="!mc.accion"
+                    />
+                </div>
+                <div class="col-sm-4" valida>
+                    <label>Contraseña:</label>
+                    <input type="password" name="contrasena" type="text" class="form-control" ng-model="mc.usuario.password" ng-required="mc.accion"
+                    />
+                </div>
+                <div class="col-sm-4" valida>
+                    <label>Repetir Contraseña:</label>
+                    <input type="password" name="repetirContrasena" type="text" class="form-control" ng-model="mc.usuario.repetirContra" ng-required="mc.accion"
+                    />
+                </div>
+        </fieldset>
+        <fieldset>
+            <legend>Datos del usuario</legend>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label>Nombres:</label>
+                    <input type="text" class="form-control" ng-model="mc.usuario.profile.nombres" />
+                </div>
+                <div class="col-sm-4" valida>
+                    <label>Apellido Paterno:</label>
+                    <input name="apellidoPatern" type="text" class="form-control" ng-model="mc.usuario.profile.apellidoPaterno" required />
+                </div>
+                <div class="col-sm-4" valida>
+                    <label>Apellido Materno:</label>
+                    <input name="apellidoMaterno" type="text" class="form-control" ng-model="mc.usuario.profile.apellidoMaterno" required />
+                </div>
+
+                <div class="col-sm-4" valida>
+                    <label>Telefono</label>
+                    <input name="telefono" maxlength="10" type="tel" class="form-control" ng-model="mc.usuario.profile.telefono" required>
+                </div>
+                <div class="col-sm-4">
+                    <label>Email</label>
+                    <input name="correo" type="email" class="form-control" ng-model="mc.usuario.profile.email" required>
+                </div>
+
+                <div class="col-sm-2" valida>
+                    <label>Sexo</label>
+                    <select name="sexo" class="form-control" ng-model="mc.usuario.profile.sexo" required>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <input type="submit" ng-click="mc.guardar(mc.usuario, form)" class="btn btn-primary" ng-if="mc.accion" valida-form formulario="form"
+                    value="Guardar">
+
+                <input type="submit" ng-click="mc.actualizar(mc.objeto, form)" class="btn btn-primary" valida-form formulario="form" value="Actualizar"
+                    ng-if="!mc.accion">
+            </div>
+        </div>
+        </div>
+        </fomr>

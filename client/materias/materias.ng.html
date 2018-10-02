@@ -1,0 +1,148 @@
+<title>Materias - pudoP</title>
+
+<h2>Materias</h2>
+<div class="row">
+	<div class="col-sm-12">
+		<button type="button" href="#Agregar" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" ng-click="mat.Nuevo()" class="btn btn-{{mat.nuevo == true ? 'success' : 'danger'}}">{{mat.nuevo == true ? 'Nuevo' : 'Cancelar'}}</button>
+		<div class="collapse" id="Agregar">
+			</br>
+			<form name="form" class="form-horizontal" role="form">
+				<div class="well">
+						<legend>Datos de la materia</legend> 
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="col-sm-3" valida>
+								<label>Clave de la Asignatura</label>
+								<input name="clvAsignatura" type="text" class="form-control" placeholder="Clave" ng-model="mat.asignatura.clvAsignatura"
+								 required capitalize>
+								</div>
+								<div class="col-sm-9" valida>
+								<label>Nombre de la Asignatura</label>
+								<input name="nombreAsignatura" type="text" class="form-control" placeholder="Nombre" ng-model="mat.asignatura.nombre" required
+								 capitalize>
+							</div>
+						</div>
+						<h6>&nbsp;</h6>
+						<div class="col-sm-12">
+							<div class="col-sm-3" valida>
+								<label>Periodo</label>
+								<select name="periodo" id="periodo" class="form-control" ng-model="mat.asignatura.periodo" required>
+									<option value disabled selected>Seleccionar Periodo...</option>
+									<option value="Trimestral">Trimestral</option>
+									<option value="Semestral">Semestral</option>
+								</select>
+							</div>
+							<div class="col-sm-4" valida> 
+								<label id="numero">Número</label>
+								<input name="numeroPeriodo" type="text" class="form-control" placeholder="" ng-model="mat.asignatura.numeroPeriodo" required capitalize>
+							</div>
+							<div class="col-sm-4" valida> 
+								<label>Horas Semanales*</label>
+								<input name="duracionAsignatura" type="text" class="form-control" placeholder="Duración" ng-model="mat.asignatura.duracion" required capitalize> 								
+							</div>
+						</div>
+						<h6>&nbsp;</h6>
+						<div class="col-sm-12">
+							<div class="col-sm-12" valida> 
+								<label for="textarea">Descripción de la Asignatura</label>
+								<textarea cols="40" rows="10" name="descripAsignatura" class="form-control" ng-model="mat.asignatura.descripAsignatura" required capitalize></textarea>
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-sm-12">
+							<input type="submit" ng-click="mat.guardar(mat.asignatura,form)" value="Guardar" class="btn btn-info" ng-show="mat.action"
+							 valida-form formulario="form">
+							<input type="submit" ng-click="mat.actualizar(mat.asignatura,form)" value="Actualizar" class="btn btn-info" ng-show="!mat.action"
+							 valida-form formulario="form">
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<br/>
+
+<!-- List -->
+<div class="well">
+		<div class="row">
+				<div class="col-sm-12">	
+					<div class="col-sm-3">
+						<label>Filtrar por...</label>
+						<select name="OBJETO" class="form-control"  disabled>
+							<option value disabled selected>Seleccionar</option>
+						</select>
+					</div>
+					<div class="col-sm-9">
+							<label>&nbsp;</label>
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Buscar..."  disabled>
+								<span class="input-group-btn">
+									<button class="btn btn-info"  type="button" disabled>Buscar</button>
+								</span>
+							</div>
+					</div>			
+				</div>
+			</div>
+			<br>
+<div class="row">
+	<div class="col-sm-12">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th width="5%">
+						<div class="text-center">Clave</div>
+					</th>
+					<th width="25%">
+						<div class="text-center">Nombre</div>
+					</th>
+					<th width="8%">
+							<div class="text-center">Periodo</div>
+						</th>
+						<th width="5%">
+								<div class="text-center">Número</div>
+							</th>
+							<th width="5%">
+									<div class="text-center">Duración</div>
+								</th>
+					<th width="10%">
+						<div class="text-center">
+							Estatus
+						</div>
+					</th>
+					<th width="10%">
+						<div class="text-center">
+							Acciones
+						</div>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<tr ng-repeat="asignatura in mat.materias">
+					<td>{{asignatura.clvAsignatura}}</td>
+					<td>{{asignatura.nombre}}</td>
+					<td>{{asignatura.periodo}}</td>
+					<td>{{asignatura.numeroPeriodo}}</td>
+					<td>{{asignatura.duracion}}</td>
+					<td>
+						<div class="text-center">
+							<span ng-if="asignatura.estatus" class="label label-success">
+								Activo
+							</span>
+							<span ng-if="!asignatura.estatus" class="label label-danger">
+								Inactivo
+							</span>
+						</div>
+					</td>
+					<td class="text-center">
+						<button type="button" class="btn btn-info" title="Editar" ng-click="mat.editar(asignatura._id)"><i class="fa fa-pencil"></i></a></li></button>
+						<button type="button" class="btn btn-{{asignatura.estatus ? 'danger' : 'success' }}" title="{{asignatura.estatus ? 'Desactivar' : 'Activar' }}" ng-click="mat.cambiarEstatus(asignatura._id)"><i class="fa fa-{{asignatura.estatus ? 'times' : 'check' }}"></i></a></button>	    
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

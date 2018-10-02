@@ -1,0 +1,68 @@
+<title>Coordinadores - pudoP</title>
+
+<h2>Coordinadores</h2>
+<div class="row">
+	<div class="col-sm-1">
+		<a href = "./coordinadores" class = "btn btn-default btn-success">Nuevo</a>
+	</div>
+</div>
+<br/>
+<div class="well">
+	<div class="row">
+		<div class="col-sm-12">	
+			<div class="col-sm-3">
+				<label>Filtrar por Unidad</label>
+				<select name="unidad"  ng-model="lam.buscar.unidad" class="form-control">
+					<option value disabled selected>Unidad</option>
+					<option ng-repeat="unidades in lcc.unidades" value="{{unidades._id}}">{{unidades.nombreUnidad}}</option>
+				</select>
+			</div>
+			<div class="col-sm-9">
+					<label>&nbsp;</label>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Buscar..." ng-model="lcc.buscar.nombre">
+						<span class="input-group-btn">
+							<button class="btn btn-info" type="button">Buscar</button>
+						</span>
+					</div>
+			</div>			
+		</div>
+	</div>
+	<br>
+	<div class = "row">
+		<div class = "col-sm-12">
+			<table class = "table table-bordered">
+				<thead>
+					<tr>
+						<th width = "37%">Nombre</th>
+						<th width = "22%">Departamento</th>
+						<th width = "22%">Usuario</th>
+						<th width = "7%">Estatus</th>
+						<th width = "12%">Acción</th>
+					</tr>	
+				</thead>
+				<tbody>
+				<tr ng-repeat = "coordinador in lcc.coordinadores">
+					<td>{{coordinador.profile.nombreCompleto}}</td>
+					<td>{{lcc.obtenerNombreDepartamento(coordinador.profile.departamento)}}</td>
+					<td>{{coordinador.username}}</td>
+					<td>
+					<div class="text-center">
+						<span ng-if="coordinador.profile.estatus" class="label label-success">
+							Activo
+						</span>
+						<span ng-if="!coordinador.profile.estatus" class="label label-danger">
+							Inactivo
+						</span>
+					</div>
+					</td>		
+					<td class="text-center">
+						<button type="button" class="btn btn-info" title="Editar" ui-sref ="root.editarCoordinador({id: coordinador._id, pantallaAnterior: 'Registro' })"><i class="fa fa-pencil"></i></a></li></button>
+						<button type="button" class="btn btn-danger" title="Desactivar" disabled><i class="fa fa-times" ></i></a></button>	    
+					</td>
+				</tr>	
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,36 @@
+{
+  "name": "SistemaPlaneacion",
+  "version": "1.0.0",
+  "description": "Sistema de planeacion",
+  "main": "index.js",
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "bcrypt": "^1.0.3",
+    "better-unoconv": "^1.0.3",
+    "docxtemplater": "^3.1.7",
+    "fibers": "^2.0.0",
+    "format-currency": "^1.0.0",
+    "jquery": "^3.1.1",
+    "jszip": "^2.6.1",
+    "moment": "^2.17.1",
+    "node-cmd": "^2.0.0",
+    "unoconv2": "^1.0.0"
+  },
+  "engines": {
+    "node": "4.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UniversidadOccidenteSistemas/pudoP.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UniversidadOccidenteSistemas/pudoP/issues"
+  },
+  "homepage": "https://github.com/UniversidadOccidenteSistemas/pudoP"
+}
